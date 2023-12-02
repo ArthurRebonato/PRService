@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState, useEffect, useLayoutEffect } from 'react';
-import { StyleSheet, View, Text, FlatList } from 'react-native';
+import React, { useState, useLayoutEffect } from 'react';
+import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { Button } from '@rneui/themed';
 import { useSelector } from 'react-redux';
 
@@ -50,13 +50,10 @@ export default function HomePage(props) {
     }
 }
 
-  useEffect(() => {
-    buscarTipoServico()
-    buscarTipoVaga()
-  }, [props])
-
   useLayoutEffect(() => {
     buscarNomeUser()
+    buscarTipoServico()
+    buscarTipoVaga()
   }, []);
 
   return (
@@ -88,17 +85,25 @@ export default function HomePage(props) {
         </View>
       </View>
       <View style={styles.tipos}>
-        <View style={[styles.grayBlock, {backgroundColor: '#ACFF82'}]}>
+        <View style={[styles.grayBlock, {backgroundColor: '#9ff9a2'}]}>
           <Text style={styles.TextOptions}>Categorias Serviços:</Text>
           <FlatList data={tipoServico} horizontal showsHorizontalScrollIndicator={false} style={styles.lista}
-              renderItem={({item}) => <RegistroTipos dados={item} buscarTipoServico={buscarTipoServico}/>}
+              renderItem={({ item }) => (
+                <TouchableOpacity onPress={() => {navigation.navigate('AllServicosPage', { selecionado: item.nome })}}>
+                  <RegistroTipos dados={item} buscarTipoServico={buscarTipoServico}/>
+                </TouchableOpacity>
+              )}
               keyExtractor={item => item.key}
           />
         </View>
         <View style={[styles.grayBlock, {backgroundColor: '#82D0FF'}]}>
           <Text style={styles.TextOptions}>Especialidade Vagas:</Text>
           <FlatList data={tipoVaga} horizontal showsHorizontalScrollIndicator={false} style={styles.lista}
-              renderItem={({item}) => <RegistroTipos dados={item} buscarTipoVaga={buscarTipoVaga}/>}
+              renderItem={({ item }) => (
+                <TouchableOpacity onPress={() => {navigation.navigate('AllVagasPage', { selecionado: item.nome })}}>
+                  <RegistroTipos dados={item} buscarTipoVaga={buscarTipoVaga}/>
+                </TouchableOpacity>
+              )}
               keyExtractor={item => item.key}
           />
         </View>

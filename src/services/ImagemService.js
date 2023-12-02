@@ -1,4 +1,4 @@
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
 
 export const uploadToFirebase = async(uri, name, onProgress) => {
     const fetchResponse = await fetch(uri);
@@ -6,7 +6,11 @@ export const uploadToFirebase = async(uri, name, onProgress) => {
 
     const imageRef = ref(getStorage(), `images/${name}`);
 
-    const uploadTask = uploadBytesResumable(imageRef, theBlob);
+    const customMetadata = {
+        contentType: 'image/jpeg'
+    };
+
+    const uploadTask = uploadBytesResumable(imageRef, theBlob, customMetadata);
 
     return new Promise((resolve, reject) => {
         uploadTask.on('state_changed', 
@@ -41,5 +45,15 @@ export const getImageFromFirebase = async (imageName) => {
     });
 };
 
+export const deleteImageFromFirebase = (imageName) => {
+    return new Promise(async (resolve, reject) => {
+        const imageRef = ref(getStorage(), `images/${imageName}`);
 
-
+        try {
+            const deleteImage = await deleteObject(imageRef);
+            resolve(deleteImage);
+        } catch (error) {
+            reject(error);
+        }
+    });
+};

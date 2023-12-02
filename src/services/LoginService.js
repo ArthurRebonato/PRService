@@ -13,7 +13,6 @@ export const createUser = (email, senha) => {
                     resolve("Usuário criado com sucesso!")
                 }).catch((error) => {
                     const errorCode = error.code;
-                    console.log(errorCode)
 
                     if (errorCode === "auth/invalid-email") {
                         reject("Email Inválido!")

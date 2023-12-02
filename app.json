@@ -19,12 +19,24 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.arthurrebonato.PRService",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyBFGXrTE3rEbY4-BJcdz3nlut2ons-II2g"
+        }
+      },
+      "permissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.FOREGROUND_SERVICE"
+      ]
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/icon.png"
     },
     "plugins": [
       [
@@ -33,7 +45,24 @@
           "photosPermission": "Permitir $(PRODUCT_NAME) acesso à suas fotos",
           "cameraPermission": "Permitir $(PRODUCT_NAME) acesso à sua câmera"
         }
+      ],
+      [
+        "expo-document-picker",
+        {
+          "iCloudContainerEnvironment": "Production"
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Permitir $(PRODUCT_NAME) que use sua localização."
+        }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "5f2177ec-163b-4af4-8c9e-6475ed56d330"
+      }
+    }
   }
 }

@@ -15,6 +15,7 @@ export default function DrawerStack() {
             <Drawer.Screen name="HomeDrawer" component={StackNavigation} options={{
             drawerIcon: ({ color, size }) => <FontAwesome name="home" color={color} size={size} />,
             drawerLabel: 'Home',
+            drawerPress: () => { navigation.navigate('Home') }
             }}/>
             <Drawer.Screen name="CompanyPageDrawer" component={CompanyPageNavigation} options={{
             drawerIcon: ({ color, size }) => <MaterialIcons name="contact-page" color={color} size={size} />,
