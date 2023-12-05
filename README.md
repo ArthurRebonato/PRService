@@ -17,7 +17,7 @@ Facilitar e agilizar o processo de encontrar e oferecer empregos e serviços, de
 async-storage<br>
 datetimepicker<br>
 react-navigation<br>
-rneui<br>
+react native elements<br>
 expo-document-picker<br>
 expo-image-picker<br>
 firebase<br>
@@ -25,7 +25,7 @@ geocoding<br>
 vector-icons<br>
 redux<br>
 expo-location<br>
-eact-native-maps<br>
+react-native-maps<br>
 
 # Link para o vídeo de uso do App
 https://youtu.be/ukH1GZZ493M
